@@ -3,8 +3,8 @@ const popup = document.getElementById("popup");
 const addBtn = document.getElementById("addBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const body = document.getElementById("body");
-const readUi = document.querySelectorAll(".readUI");
-const newCard = document.createElement("div");
+const  readUi = document.querySelectorAll(".readUI");
+let reading = readUi.childNodes;
 const lib = document.querySelector(".book-section");
 
 const form = document.querySelector(".form");
@@ -13,6 +13,8 @@ const authorName = document.getElementById("authorName");
 const readCheck = document.getElementById("readCheck");
 const submitBtn = document.getElementById("submitBtn");
 const inputField = document.querySelectorAll(".input");
+
+let newArr = [].slice.call(book);
 
 let bookCounter = book.length -1;
 
@@ -112,17 +114,30 @@ body.addEventListener("click", () => {
     }
 })
 
+
+// function createBook(bookName, title, author){
+//     const bookName = new Book(title, author);
+//     return bookName;
+// }
+
 form.addEventListener("submit", function(event) {
     // Prevent the form from being submitted
     event.preventDefault();
+    var newBookName = bookTitle.value;
+    let newBookAuthor = authorName.value;
 
-  
+    const newBook = new Book(newBookName, newBookAuthor);
+    bookCounter++;
+    const newCard = document.createElement("div");
+    newCard.className = "book-card";
+    newCard.id = `book-${bookCounter}`;
+    newCard.innerHTML =`<p>${newBook.title}</p><p>${newBook.author}</p> <div class='readUI'> <p>Read / Unread</p></div>`
+    lib.appendChild(newCard);
+    readUi.push(newCard);
     // Log the data object to the console
-    console.log(data);
+    return newBook;
   });
 
 
 setBooksId();
 setReadId();
-// newCard.className = "book-card";
-// lib.appendChild(newCard);
