@@ -145,12 +145,16 @@ img {
 }
 .readUI {
     width: 80%;
-    background-color: #e58c8c;
+    /* background-color: #e58c8c; */
     /* 9fff9c read  */
     /* read #8fe58c */
     border-radius: 6px;
     text-align: center;
     margin-bottom: 10px;
+}
+
+#readOrNot {
+    user-select: none;
 }
 
 .popup {

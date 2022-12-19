@@ -7,6 +7,7 @@ const body = document.getElementById('body');
 const readUi = document.querySelectorAll('.readUI');
 const lib = document.querySelector('.book-section');
 
+
 const form = document.querySelector('.form');
 const bookTitle = document.getElementById('bookTitle');
 const authorName = document.getElementById('authorName');
@@ -19,9 +20,10 @@ const readUiArray = [].slice.call(readUi);
 
 let bookCounter = book.length - 1;
 
-function Book (title, author) {
+function Book (title, author, readen) {
   this.title = title;
   this.author = author;
+  this.readen = readen;
 }
 
 addBtn.addEventListener('click', (e) => {
@@ -78,15 +80,18 @@ function setBookId (givenBook) {
 
 function setReadId () {
   const currentRead = readUiArray[readUiArray.length - 1];
+  const readConfirmation = currentRead.querySelector("#readOrNot");
   currentRead.addEventListener('click', (e) => {
     e.stopPropagation();
     if (popup.style.visibility === 'visible') {
       body.click();
     } else {
-      if (currentRead.style.backgroundColor === 'rgb(159, 255, 156)') {
-        currentRead.style.backgroundColor = '#e58c8c';
+      if (currentRead.style.backgroundColor === 'rgb(159, 255, 156)') { //read
+        currentRead.style.backgroundColor = '#e58c8c'; // not read
+        readConfirmation.innerHTML = "Not read"
       } else {
-        currentRead.style.cssText = 'background-color: #9fff9c';
+        currentRead.style.cssText = 'background-color: #9fff9c'; // read
+        readConfirmation.innerHTML = "Read"
       }
     }
   })
@@ -104,14 +109,27 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   const newBookName = bookTitle.value;
   const newBookAuthor = authorName.value;
-
-  const newBook = new Book(newBookName, newBookAuthor);
+  const verifyRead = readCheck.checked;
+  console.log(verifyRead);
+  const newBook = new Book(newBookName, newBookAuthor, verifyRead);
   bookCounter++;
   const readUiNewID = `readUi-${bookCounter}`;
   const newCard = document.createElement('div');
   newCard.className = 'book-card';
   newCard.id = `book-${bookCounter}`;
-  newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p>Read / Unread</p></div>`;
+
+  if (verifyRead === true) {
+  newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Read</p></div>`;
+  const actualCheck = newCard.querySelector(`#${readUiNewID}`);
+  actualCheck.style.backgroundColor = "rgb(159, 255, 156)";
+  } else if (verifyRead === false) {
+    newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Not Read</p></div>`;
+    const actualCheck = newCard.querySelector(`#${readUiNewID}`);
+    actualCheck.style.backgroundColor = "rgb(229, 140, 140)";
+  }
+
+
+//   newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p>Read / Unread</p></div>`;
   lib.appendChild(newCard);
   bookArray.push(newCard);
   readUiArray.push(newCard.querySelector('.newUI'));
