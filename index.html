@@ -1,95 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/style.css">
-    <script src="assets/scripts/script.js" defer></script>
-    <title>Index</title>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-          <h1 class="title">My Library</h1>
-          <button class="theme">Shift</button>
-        </div>
-        <div class="big-container">
-        <div class="sidebar">
-          <div class="buttons">
-            <button class="add-btn btn" id="addBtn">Add Book</button>
-            <button class="search-btn btn" id="searchBtn">Search book</button>
-            <button class="delete-btn btn" id="deleteBtn">Delete</button>
-          </div>
-        </div>
-        <div class="main-content">
-          <div class="book-section">
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <div class="readunread"><p>Read / Unread</p></div>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div>
-            <div class="book-card">
-                <p>Title of book</p>
-                <p>Author of book</p>
-                <p>Read / Unread</p>
-            </div> a
-          </div>
-        </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="assets/styles/style.css" />
+        <script src="assets/scripts/script.js" defer></script>
+        <title>Index</title>
+    </head>
+    <body id="body">
+        <div class="popup" id="popup">
+            <form action="" method="post">
+                <div class="addBookTitle">Add a book</div>
+                <div>
+                    <input
+                        type="text"
+                        id="bookTitle"
+                        placeholder="Title"
+                        name="bookTitle"
+                        required
+                    />
+                </div>
 
-      </div>
+                <div>
+                    <input
+                        type="text"
+                        id="authorName"
+                        placeholder="Author"
+                        name="authorName"
+                        required
+                    />
+                </div>
 
-    </div>
-    <footer class="footer">
-        <p>Here goes my info and github account</p>
-    </footer>
-</body>
+                <div class="read-group">
+                    <label for="readCheck">I read the book</label><br>
+                    <input type="checkbox" id="readCheck" name="readCheck" value="Read">
+                </div>
+                <button class="submitBtn" id="submitBtn">Create</button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="header">
+                <h1 class="title">My Library</h1>
+                <button class="theme">Shift</button>
+            </div>
+            <div class="big-container">
+                <div class="sidebar">
+                    <div class="buttons">
+                        <button class="add-btn btn" id="addBtn">
+                            Add Book
+                        </button>
+                        <button class="search-btn btn" id="searchBtn">
+                            Search book
+                        </button>
+                        <button class="delete-btn btn" id="deleteBtn">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="book-section">
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <div class="readunread"><p>Read / Unread</p></div>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        <div class="book-card">
+                            <p>Title of book</p>
+                            <p>Author of book</p>
+                            <p>Read / Unread</p>
+                        </div>
+                        a
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>Here goes my info and github account</p>
+        </footer>
+    </body>
 </html>

@@ -22,6 +22,11 @@ body {
     min-height: 100vh;
     font-family: var(--system-ui);
     justify-content: space-between;
+    /* rgba(0, 0, 0, 0.5) color when popup */
+}
+
+button {
+    cursor: pointer;
 }
 
 img {
@@ -31,10 +36,13 @@ img {
 
 .header {
     display: flex;
-    background-color: rgb(16, 0, 245);
+    background-color: rgb(38, 38, 41);
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     margin: 0;
     padding: 20px;
     justify-content: center;
+    position: sticky;
+    top: 0;
 }
 
 .title {
@@ -83,12 +91,12 @@ img {
     width: 80%;
     gap: 2rem;
     position: sticky;
-    top: 7rem;
+    top: 8rem;
 }
 
 .btn {
     padding: 15px 0px;
-    border-radius: 8px;
+    border-radius: 25px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
@@ -126,12 +134,72 @@ img {
 }
 .readunread {
     width: 80%;
-    background-color: rgb(82, 44, 44);
+    background-color: #e58c8c;
+    /* 9fff9c read  */
+    /* read #8fe58c */
     border-radius: 6px;
     text-align: center;
     margin-bottom: 10px;
 }
 
+.popup {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    border-radius: 15px;
+    background-color: #f0eef1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    transition: ease-in;
+    width: 300px;
+    visibility: hidden;
+    padding: 30px 0px;
+}
+
+.addBookTitle {
+    font-size: 1.5rem;
+}
+
+.popup > form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ffffff;
+}
+
+input:focus {
+    outline: none;
+}
+
+.read-group {
+    display: flex;
+    gap: 4px;
+}
+
+.submitBtn {
+    background-color: #9bff9f;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+.submitBtn:hover {
+    background-color: #8fe58c;
+}
 
 .footer {
     left: 0;
