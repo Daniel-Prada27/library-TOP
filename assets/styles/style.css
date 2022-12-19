@@ -9,15 +9,19 @@
 
 :root.light {
     --text-color: black;
+    --btn-bgc: #f0f0f0;
 
 }
 
 body {
     display: flex;
     flex-direction: column;
-    flex-shrink: 1;
+    /* flex-shrink: 1; */
     margin: 0;
     height: 100vh;
+    min-height: 100vh;
+    font-family: var(--system-ui);
+    justify-content: space-between;
 }
 
 img {
@@ -51,6 +55,13 @@ img {
     padding-bottom: 8px;
 }
 
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .big-container {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -62,6 +73,8 @@ img {
     display: flex;
     flex-direction: column;
     margin-left: 3rem;
+    position: sticky;
+    top: 0;
 }
 
 .buttons {
@@ -69,7 +82,22 @@ img {
     flex-direction: column;
     width: 80%;
     gap: 2rem;
+    position: sticky;
+    top: 7rem;
 }
+
+.btn {
+    padding: 15px 0px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    background-color: #f0f0f0;
+}
+
 
 .main-content {
     grid-column: 1 / 2;
@@ -88,17 +116,28 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 8px;
+
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.readunread {
+    width: 80%;
+    background-color: rgb(82, 44, 44);
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 
-
 .footer {
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
+
+    /* width: 100vw; */
 }
