@@ -37,16 +37,19 @@ addBtn.addEventListener("click", (e) => {
 submitBtn.addEventListener("click", () => {
     popup.style.cssText ="transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;"
     body.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    for (let i = 0; i < inputField.length; i++){
+        inputField[i].textContent ="";
+    }
 })
 
 deleteBtn.addEventListener("click", () => {
     if (popup.style.visibility === "visible") {
         body.click();
     } else {
-        for (let i = 0; i < book.length; i++) {
-            if (book[i].style.border === "2px solid black") {
-                book[i].style.border = "none";
-                lib.removeChild(book[i]);
+        for (let i = 0; i < bookArray.length; i++) {
+            if (bookArray[i].style.border === "2px solid black") {
+                bookArray[i].style.border = "none";
+                lib.removeChild(bookArray[i]);
             }
         }
     }
