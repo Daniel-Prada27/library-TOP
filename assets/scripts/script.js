@@ -2,11 +2,23 @@ const book = document.querySelectorAll(".book-card");
 const popup = document.getElementById("popup");
 const submitBtn = document.getElementById("submitBtn");
 const addBtn = document.getElementById("addBtn");
+const deleteBtn = document.getElementById("deleteBtn");
 const body = document.getElementById("body");
+const readUi = document.querySelectorAll(".readUI");
+const newCard = document.createElement("div");
+const lib = document.querySelector(".book-section");
 
-addBtn.addEventListener("click", () => {
+let bookCounter = book.length -1;
+
+function Book(title, author) {
+    this.title = title;
+    this.author = author;
+}
+
+addBtn.addEventListener("click", (e) => {
     popup.style.cssText ="transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;"
     body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    e.stopPropagation();
 });
 
 submitBtn.addEventListener("click", () => {
@@ -14,17 +26,60 @@ submitBtn.addEventListener("click", () => {
     body.style.backgroundColor = "rgba(0, 0, 0, 0)";
 })
 
-
-
-for (let i = 0; i < book.length; i++) {
-    book[i].id = `book-${i}`;
-    let currentBook = book[i];
-    book[i].addEventListener("click", () => {
-        if (currentBook.style.border === "2px solid black"){
-            currentBook.style.cssText = "border: none;";
-        }else {
-            currentBook.style.cssText = "border: 2px solid black;";
+deleteBtn.addEventListener("click", () => {
+    for (let i = 0; i < book.length; i++) {
+        if (book[i].style.border === "2px solid black") {
+            book[i].style.border = "none";
+            lib.removeChild(book[i]);
         }
+    }
+})
 
-    })
+function setReadId() {
+
+    for (let i = 0; i < readUi.length; i++) {
+        readUi[i].id = `readUi-${i}`;
+        let currentRead = readUi[i];
+        currentRead.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (currentRead.style.backgroundColor === "rgb(159, 255, 156)") {
+                currentRead.style.backgroundColor = "#e58c8c"
+            } else {
+                currentRead.style.cssText = "background-color: #9fff9c";
+            }
+    
+        })
+    }
 }
+function setBooksId() {
+    for (let i = 0; i < book.length; i++) {
+        book[i].id = `book-${i}`;
+        let currentBook = book[i];
+        currentBook.addEventListener("click", () => {
+            if (currentBook.style.border === "2px solid black"){
+                currentBook.style.cssText = "border: none;";
+            }else {
+                currentBook.style.cssText = "border: 2px solid black;";
+            }
+    
+        })
+    }
+}
+
+setBooksId();
+setReadId();
+
+
+body.addEventListener("click", () => {
+    if (popup.style.visibility == "visible") {
+        popup.style.cssText = "transform: translate(-50%, -50%) scale(0.1);";
+        body.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    }
+})
+
+
+
+
+
+// newCard.className = "book-card";
+// lib.appendChild(newCard);
