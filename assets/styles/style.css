@@ -106,6 +106,17 @@ img {
     background-color: #f0f0f0;
 }
 
+#addBtn:hover {
+    background-color: #9fff9c;
+}
+
+#deleteBtn:hover {
+    background-color: #e58c8c;
+}
+
+#searchBtn:hover {
+    background-color: #8c95e5;
+}
 
 .main-content {
     grid-column: 1 / 2;
