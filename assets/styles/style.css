@@ -1,0 +1,104 @@
+:root {
+    --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root.dark {
+    --text-color: white;
+}
+
+:root.light {
+    --text-color: black;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    margin: 0;
+    height: 100vh;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    background-color: rgb(16, 0, 245);
+    margin: 0;
+    padding: 20px;
+    justify-content: center;
+}
+
+.title {
+    margin: 0;
+    color: white;
+    font-family: var(--system-ui);
+    margin-left: auto;
+
+    flex-shrink: 1;
+}
+
+.theme {
+    margin-left: auto;
+    border-radius: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.big-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin-top: 50px;
+}
+
+.sidebar {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 2rem;
+}
+
+.main-content {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.book-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-left: 20px;
+    gap: 1rem;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+}
