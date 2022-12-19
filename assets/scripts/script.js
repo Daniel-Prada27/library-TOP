@@ -4,7 +4,6 @@ const addBtn = document.getElementById("addBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const body = document.getElementById("body");
 const  readUi = document.querySelectorAll(".readUI");
-let reading = readUi.childNodes;
 const lib = document.querySelector(".book-section");
 
 const form = document.querySelector(".form");
@@ -14,7 +13,8 @@ const readCheck = document.getElementById("readCheck");
 const submitBtn = document.getElementById("submitBtn");
 const inputField = document.querySelectorAll(".input");
 
-let newArr = [].slice.call(book);
+let bookArray = [].slice.call(book);
+let readUiArray = [].slice.call(readUi);
 
 let bookCounter = book.length -1;
 
@@ -63,47 +63,64 @@ popup.addEventListener("click", (e) => {
     e.stopPropagation();
 })
 
+// function setReadId() {
+
+//     for (let i = 0; i < readUiArray.length; i++) {
+//         readUiArray[i].id = `readUi-${i}`;
+//         let currentRead = readUiArray[i];
+//         currentRead.addEventListener("click", (e) => {
+//             e.stopPropagation();
+//             if (popup.style.visibility === "visible") {
+//                 body.click();
+//             } else {
+//                 if (currentRead.style.backgroundColor === "rgb(159, 255, 156)") {
+//                     currentRead.style.backgroundColor = "#e58c8c"
+//                 } else {
+//                     currentRead.style.cssText = "background-color: #9fff9c";
+//                 }
+//             }
+
+    
+//         })
+//     }
+// }
+
+
+function setBookId(givenBook) {
+    givenBook.addEventListener("click",  () => {
+        if (popup.style.visibility === "visible") {
+            body.click();
+        } else {
+            if (givenBook.style.border === "2px solid black"){
+                givenBook.style.cssText = "border: none;";
+                return;
+            }else {
+                givenBook.style.cssText = "border: 2px solid black;";
+                return;
+            }
+        }
+
+
+    })
+}
+
 function setReadId() {
-
-    for (let i = 0; i < readUi.length; i++) {
-        readUi[i].id = `readUi-${i}`;
-        let currentRead = readUi[i];
-        currentRead.addEventListener("click", (e) => {
-            e.stopPropagation();
-            if (popup.style.visibility === "visible") {
-                body.click();
+    let currentRead = readUiArray[readUiArray.length -1];
+    currentRead.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (popup.style.visibility === "visible") {
+            body.click();
+        } else {
+            if (currentRead.style.backgroundColor === "rgb(159, 255, 156)") {
+                currentRead.style.backgroundColor = "#e58c8c"
             } else {
-                if (currentRead.style.backgroundColor === "rgb(159, 255, 156)") {
-                    currentRead.style.backgroundColor = "#e58c8c"
-                } else {
-                    currentRead.style.cssText = "background-color: #9fff9c";
-                }
+                currentRead.style.cssText = "background-color: #9fff9c";
             }
+        }
 
-    
-        })
-    }
+
+    })
 }
-function setBooksId() {
-    for (let i = 0; i < book.length; i++) {
-        book[i].id = `book-${i}`;
-        let currentBook = book[i];
-        currentBook.addEventListener("click", () => {
-            if (popup.style.visibility === "visible") {
-                body.click();
-            } else {
-                if (currentBook.style.border === "2px solid black"){
-                    currentBook.style.cssText = "border: none;";
-                }else {
-                    currentBook.style.cssText = "border: 2px solid black;";
-                }
-            }
-
-    
-        })
-    }
-}
-
 
 
 
@@ -115,10 +132,6 @@ body.addEventListener("click", () => {
 })
 
 
-// function createBook(bookName, title, author){
-//     const bookName = new Book(title, author);
-//     return bookName;
-// }
 
 form.addEventListener("submit", function(event) {
     // Prevent the form from being submitted
@@ -128,16 +141,19 @@ form.addEventListener("submit", function(event) {
 
     const newBook = new Book(newBookName, newBookAuthor);
     bookCounter++;
+    let readUiNewID = `readUi-${bookCounter}`;
     const newCard = document.createElement("div");
     newCard.className = "book-card";
     newCard.id = `book-${bookCounter}`;
-    newCard.innerHTML =`<p>${newBook.title}</p><p>${newBook.author}</p> <div class='readUI'> <p>Read / Unread</p></div>`
+    newCard.innerHTML =`<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p>Read / Unread</p></div>`
     lib.appendChild(newCard);
-    readUi.push(newCard);
-    // Log the data object to the console
+    bookArray.push(newCard);
+    readUiArray.push(newCard.querySelector(".newUI"));
+    setBookId(newCard);
+    setReadId();
     return newBook;
   });
 
 
-setBooksId();
-setReadId();
+// setBooksId();
+// setReadId();
