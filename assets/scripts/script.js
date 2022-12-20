@@ -8,7 +8,7 @@ const searchBtn = document.getElementById('searchBtn');
 const body = document.getElementById('body');
 const readUi = document.querySelectorAll('.readUI');
 const lib = document.querySelector('.book-section');
-
+const notFound = document.createElement('p');
 
 const form = document.querySelector('.form');
 const bookTitle = document.getElementById('bookTitle');
@@ -21,6 +21,7 @@ const searchPopup = document.getElementById('search-popup');
 const searchForm = document.querySelector('.search-form');
 const searchTitle = document.getElementById('searchTitle');
 const searchBtnForm = document.getElementById('searchBtn-Form');
+let validateFormClose = false;
 
 const bookArray = [].slice.call(book);
 const readUiArray = [].slice.call(readUi);
@@ -73,6 +74,7 @@ searchBtn.addEventListener('click', (e) => {
       body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
       e.stopPropagation();
     }
+    searchForm.reset();
   })
 
 for (let i = 0; i < inputField.length; i++) {
@@ -90,8 +92,20 @@ searchPopup.addEventListener('click', (e) => {
 })
 
 searchBtnForm.addEventListener('click', () => {
-    searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;';
-    body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+
+    if (validateFormClose === true) {
+        searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;';
+        body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+        try {
+            searchForm.removeChild(notFound);
+        } catch (error) {
+            console.log("oops");
+        }
+    }
+
+
+
+    validateFormClose = false;
 })
 
 function setBookId (givenBook) {
@@ -178,16 +192,25 @@ searchForm.addEventListener('submit', (e) => {
 
     const titleSearch = searchTitle.value;
     let checkedBook;
-
+    let findStatus = false;
     for (let i = 0; i <= (bookCollection.length-1); i++) {
         checkedBook = bookCollection[i].title;
         if (checkedBook === titleSearch) {
             console.log(bookCollection[i]);
+            findStatus = true;
+            validateFormClose = true;
             const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
             bookFound.style.border = "2px solid black";
         }
     }
 
+    if (findStatus === false) {
+        console.log("la");
 
+        notFound.textContent = "Not found";
+        searchForm.appendChild(notFound);
+        validateFormClose = false;
+    }
+    searchBtnForm.click();
 
 })
