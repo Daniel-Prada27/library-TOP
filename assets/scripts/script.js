@@ -26,7 +26,7 @@ let validateFormClose = false;
 const bookArray = [].slice.call(book);
 const readUiArray = [].slice.call(readUi);
 
-let bookCollection = [];
+const bookCollection = [];
 
 let bookCounter = book.length - 1;
 
@@ -67,20 +67,20 @@ deleteBtn.addEventListener('click', () => {
 })
 
 searchBtn.addEventListener('click', (e) => {
-    if (searchPopup.style.visibility === 'visible' || popup.style.visibility === 'visible') {
-      body.click();
-    } else {
-      searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;';
-      body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-      e.stopPropagation();
-    }
-    try {
-        searchForm.removeChild(notFound);
-    } catch (error) {
-        console.log("oops");
-    }
-    searchForm.reset();
-  })
+  if (searchPopup.style.visibility === 'visible' || popup.style.visibility === 'visible') {
+    body.click();
+  } else {
+    searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;';
+    body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    e.stopPropagation();
+  }
+  try {
+    searchForm.removeChild(notFound);
+  } catch (error) {
+    console.log('oops');
+  }
+  searchForm.reset();
+})
 
 for (let i = 0; i < inputField.length; i++) {
   inputField[i].addEventListener('click', (e) => {
@@ -93,24 +93,21 @@ popup.addEventListener('click', (e) => {
 })
 
 searchPopup.addEventListener('click', (e) => {
-    e.stopPropagation();
+  e.stopPropagation();
 })
 
 searchBtnForm.addEventListener('click', () => {
-
-    if (validateFormClose === true) {
-        searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;';
-        body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-        try {
-            searchForm.removeChild(notFound);
-        } catch (error) {
-            console.log("oops");
-        }
+  if (validateFormClose === true) {
+    searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;';
+    body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    try {
+      searchForm.removeChild(notFound);
+    } catch (error) {
+      console.log('oops');
     }
+  }
 
-
-
-    validateFormClose = false;
+  validateFormClose = false;
 })
 
 function setBookId (givenBook) {
@@ -129,18 +126,18 @@ function setBookId (givenBook) {
 
 function setReadId () {
   const currentRead = readUiArray[readUiArray.length - 1];
-  const readConfirmation = currentRead.querySelector("#readOrNot");
+  const readConfirmation = currentRead.querySelector('#readOrNot');
   currentRead.addEventListener('click', (e) => {
     e.stopPropagation();
     if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
       body.click();
     } else {
-      if (currentRead.style.backgroundColor === 'rgb(159, 255, 156)') { //read
+      if (currentRead.style.backgroundColor === 'rgb(159, 255, 156)') { // read
         currentRead.style.backgroundColor = '#e58c8c'; // not read
-        readConfirmation.innerHTML = "Not read"
+        readConfirmation.innerHTML = 'Not read'
       } else {
         currentRead.style.cssText = 'background-color: #9fff9c'; // read
-        readConfirmation.innerHTML = "Read"
+        readConfirmation.innerHTML = 'Read'
       }
     }
   })
@@ -163,7 +160,7 @@ form.addEventListener('submit', function (event) {
   const newBookName = bookTitle.value;
   const newBookAuthor = authorName.value;
   const verifyRead = readCheck.checked;
-  const bookID = `book-${bookCounter+1}`;
+  const bookID = `book-${bookCounter + 1}`;
   const newBook = new Book(newBookName, newBookAuthor, verifyRead, bookID);
   bookCounter++;
   const readUiNewID = `readUi-${bookCounter}`;
@@ -172,17 +169,16 @@ form.addEventListener('submit', function (event) {
   newCard.id = `book-${bookCounter}`;
 
   if (verifyRead === true) {
-  newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Read</p></div>`;
-  const actualCheck = newCard.querySelector(`#${readUiNewID}`);
-  actualCheck.style.backgroundColor = "rgb(159, 255, 156)";
+    newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Read</p></div>`;
+    const actualCheck = newCard.querySelector(`#${readUiNewID}`);
+    actualCheck.style.backgroundColor = 'rgb(159, 255, 156)';
   } else if (verifyRead === false) {
     newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Not Read</p></div>`;
     const actualCheck = newCard.querySelector(`#${readUiNewID}`);
-    actualCheck.style.backgroundColor = "rgb(229, 140, 140)";
+    actualCheck.style.backgroundColor = 'rgb(229, 140, 140)';
   }
 
-
-//   newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p>Read / Unread</p></div>`;
+  //   newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p>Read / Unread</p></div>`;
   lib.appendChild(newCard);
   bookArray.push(newCard);
   readUiArray.push(newCard.querySelector('.newUI'));
@@ -193,28 +189,27 @@ form.addEventListener('submit', function (event) {
 })
 
 searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const titleSearch = searchTitle.value;
-    let checkedBook;
-    let findStatus = false;
-    for (let i = 0; i <= (bookCollection.length-1); i++) {
-        checkedBook = bookCollection[i].title;
-        if (checkedBook === titleSearch) {
-            console.log(bookCollection[i]);
-            findStatus = true;
-            validateFormClose = true;
-            const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
-            bookFound.style.border = "2px solid black";
-        }
+  const titleSearch = searchTitle.value;
+  let checkedBook;
+  let findStatus = false;
+  for (let i = 0; i <= (bookCollection.length - 1); i++) {
+    checkedBook = bookCollection[i].title;
+    if (checkedBook === titleSearch) {
+      console.log(bookCollection[i]);
+      findStatus = true;
+      validateFormClose = true;
+      const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
+      bookFound.style.border = '2px solid black';
     }
+  }
 
-    if (findStatus === false) {
-        console.log("la");
-        notFound.textContent = "Not found";
-        searchForm.appendChild(notFound);
-        validateFormClose = false;
-    }
-    searchBtnForm.click();
-
+  if (findStatus === false) {
+    console.log('la');
+    notFound.textContent = 'Not found';
+    searchForm.appendChild(notFound);
+    validateFormClose = false;
+  }
+  searchBtnForm.click();
 })
