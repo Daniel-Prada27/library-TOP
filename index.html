@@ -10,7 +10,7 @@
     </head>
     <body id="body">
         <div class="popup" id="popup">
-            <form class="form" action="" method="post">
+            <form class="form" id="addForm" action="" method="post">
                 <div class="addBookTitle">Add a book</div>
                 <div>
                     <input
@@ -41,6 +41,25 @@
                 <button class="submitBtn" id="submitBtn">Create</button>
             </form>
         </div>
+
+        <div class="popup" id="search-popup">
+            <form class="search-form" action="" method="post">
+                <div class="addBookTitle">Search a book</div>
+                <div>
+                    <input
+                        type="text"
+                        class="input"
+                        id="bookTitle"
+                        placeholder="Title"
+                        name="bookTitle"
+                        required
+                    />
+                </div>
+
+                <button class="submitBtn" id="searchBtn-Form">Search</button>
+            </form>
+        </div>
+
         <div class="container">
             <div class="header">
                 <h1 class="title">My Library</h1>

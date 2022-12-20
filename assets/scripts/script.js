@@ -3,6 +3,7 @@ const book = document.querySelectorAll('.book-card');
 const popup = document.getElementById('popup');
 const addBtn = document.getElementById('addBtn');
 const deleteBtn = document.getElementById('deleteBtn');
+const searchBtn = document.getElementById('searchBtn');
 const body = document.getElementById('body');
 const readUi = document.querySelectorAll('.readUI');
 const lib = document.querySelector('.book-section');
@@ -15,15 +16,19 @@ const readCheck = document.getElementById('readCheck');
 const submitBtn = document.getElementById('submitBtn');
 const inputField = document.querySelectorAll('.input');
 
+const searchPopup = document.getElementById('search-popup');
+
 const bookArray = [].slice.call(book);
 const readUiArray = [].slice.call(readUi);
 
+let bookCollection = [];
+
 let bookCounter = book.length - 1;
 
-function Book (title, author, readen) {
+function Book (title, author, read) {
   this.title = title;
   this.author = author;
-  this.readen = readen;
+  this.read = read;
 }
 
 addBtn.addEventListener('click', (e) => {
@@ -32,6 +37,7 @@ addBtn.addEventListener('click', (e) => {
   } else {
     popup.style.cssText = 'transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;';
     body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    form.reset();
     e.stopPropagation();
   }
 })
@@ -42,7 +48,7 @@ submitBtn.addEventListener('click', () => {
 })
 
 deleteBtn.addEventListener('click', () => {
-  if (popup.style.visibility === 'visible') {
+  if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
     body.click();
   } else {
     for (let i = 0; i < bookArray.length; i++) {
@@ -54,6 +60,16 @@ deleteBtn.addEventListener('click', () => {
   }
 })
 
+searchBtn.addEventListener('click', (e) => {
+    if (searchPopup.style.visibility === 'visible' || popup.style.visibility === 'visible') {
+      body.click();
+    } else {
+      searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;';
+      body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+      e.stopPropagation();
+    }
+  })
+
 for (let i = 0; i < inputField.length; i++) {
   inputField[i].addEventListener('click', (e) => {
     e.stopPropagation();
@@ -64,9 +80,13 @@ popup.addEventListener('click', (e) => {
   e.stopPropagation();
 })
 
+searchPopup.addEventListener('click', (e) => {
+    e.stopPropagation();
+})
+
 function setBookId (givenBook) {
   givenBook.addEventListener('click', () => {
-    if (popup.style.visibility === 'visible') {
+    if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
       body.click();
     } else {
       if (givenBook.style.border === '2px solid black') {
@@ -83,7 +103,7 @@ function setReadId () {
   const readConfirmation = currentRead.querySelector("#readOrNot");
   currentRead.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (popup.style.visibility === 'visible') {
+    if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
       body.click();
     } else {
       if (currentRead.style.backgroundColor === 'rgb(159, 255, 156)') { //read
@@ -98,8 +118,12 @@ function setReadId () {
 }
 
 body.addEventListener('click', () => {
-  if (popup.style.visibility === 'visible') {
+  if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
     popup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden;';
+    body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  }
+  if (searchPopup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
+    searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden;';
     body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
   }
 })
@@ -135,5 +159,6 @@ form.addEventListener('submit', function (event) {
   readUiArray.push(newCard.querySelector('.newUI'));
   setBookId(newCard);
   setReadId();
+  bookCollection.push(newBook)
   return newBook;
 })
