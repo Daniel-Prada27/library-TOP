@@ -1,6 +1,7 @@
 /* eslint-disable semi */
 const book = document.querySelectorAll('.book-card');
 const popup = document.getElementById('popup');
+// const themeBtn = document.getElementById('theme');
 const addBtn = document.getElementById('addBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const searchBtn = document.getElementById('searchBtn');
@@ -17,6 +18,9 @@ const submitBtn = document.getElementById('submitBtn');
 const inputField = document.querySelectorAll('.input');
 
 const searchPopup = document.getElementById('search-popup');
+const searchForm = document.querySelector('.search-form');
+const searchTitle = document.getElementById('searchTitle');
+const searchBtnForm = document.getElementById('searchBtn-Form');
 
 const bookArray = [].slice.call(book);
 const readUiArray = [].slice.call(readUi);
@@ -25,10 +29,11 @@ let bookCollection = [];
 
 let bookCounter = book.length - 1;
 
-function Book (title, author, read) {
+function Book (title, author, read, bookID) {
   this.title = title;
   this.author = author;
   this.read = read;
+  this.bookID = bookID;
 }
 
 addBtn.addEventListener('click', (e) => {
@@ -84,6 +89,11 @@ searchPopup.addEventListener('click', (e) => {
     e.stopPropagation();
 })
 
+searchBtnForm.addEventListener('click', () => {
+    searchPopup.style.cssText = 'transform: translate(-50%, -50%) scale(0.1); visibility: hidden; transition: 0.2s ease-out;';
+    body.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+})
+
 function setBookId (givenBook) {
   givenBook.addEventListener('click', () => {
     if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
@@ -134,8 +144,8 @@ form.addEventListener('submit', function (event) {
   const newBookName = bookTitle.value;
   const newBookAuthor = authorName.value;
   const verifyRead = readCheck.checked;
-  console.log(verifyRead);
-  const newBook = new Book(newBookName, newBookAuthor, verifyRead);
+  const bookID = `book-${bookCounter+1}`;
+  const newBook = new Book(newBookName, newBookAuthor, verifyRead, bookID);
   bookCounter++;
   const readUiNewID = `readUi-${bookCounter}`;
   const newCard = document.createElement('div');
@@ -161,4 +171,23 @@ form.addEventListener('submit', function (event) {
   setReadId();
   bookCollection.push(newBook)
   return newBook;
+})
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const titleSearch = searchTitle.value;
+    let checkedBook;
+
+    for (let i = 0; i <= (bookCollection.length-1); i++) {
+        checkedBook = bookCollection[i].title;
+        if (checkedBook === titleSearch) {
+            console.log(bookCollection[i]);
+            const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
+            bookFound.style.border = "2px solid black";
+        }
+    }
+
+
+
 })

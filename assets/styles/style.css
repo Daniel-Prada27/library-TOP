@@ -1,15 +1,60 @@
 :root {
     --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    --blackText: black;
+    --whiteText: white;
 }
 
 :root.dark {
-    --text-color: white;
+    --body-backgroundColor: rgb(38, 38, 41);
+
+    /* HEADER */
+    --header-background: rgb(38, 38, 41);
+    --header-boxShadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    --header-textColor: white;
+
+    /* MAIN BUTTONS */
+
+    --mainBtn-textColor: black;
+    --main-Btn-backgroundColor: #f0f0f0;
+    --main-Btn-boxshadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    
 }
 
 :root.light {
+
+    --body-backgroundColor: #ffffff;
+
+    /* HEADER */
+    --header-background: rgb(38, 38, 41);
+    --header-boxShadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    --header-textColor: white;
+
+    /* MAIN BUTTONS */
+
+    --mainBtn-textColor: black;
+    --main-Btn-backgroundColor: #f0f0f0;
+    --main-Btn-boxshadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+    /* BOOK CARDS */
+
+    --bookCard-boxshadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    /* POPUPS */
+
+    --popup-backgroundColor: #f0eef1;
+
+    /* INPUT  */
+    
+    --input-backgroundColor: #ffffff;
+
+
     --text-color: black;
     --btn-bgc: #f0f0f0;
+    --icon-color: black;
+
+
 
 }
 
@@ -23,6 +68,7 @@ body {
     font-family: var(--system-ui);
     justify-content: space-between;
     /* rgba(0, 0, 0, 0.5) color when popup */
+    background-color: #ffffff;
 }
 
 button {
@@ -32,6 +78,16 @@ button {
 img {
     width: 100%;
     height: auto;
+}
+
+a {
+    text-decoration: none;
+    background-color: none;
+    color: none;
+}
+
+.fa-github {
+    color: black;
 }
 
 .header {
@@ -49,7 +105,6 @@ img {
     margin: 0;
     color: white;
     font-family: var(--system-ui);
-    margin-left: auto;
 
     flex-shrink: 1;
 }
@@ -61,6 +116,9 @@ img {
     padding-left: 20px;
     padding-top: 8px;
     padding-bottom: 8px;
+    background-color: inherit;
+    border: 1px solid #c4c8f0;
+    color: white;
 }
 
 
@@ -156,6 +214,9 @@ img {
 #readOrNot {
     user-select: none;
 }
+#readOrNot:hover {
+    cursor: pointer;
+}
 
 .popup, .search-popup {
     display: flex;
@@ -221,6 +282,9 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-size: 1.2rem;
+    font-weight: 700;
 
     /* width: 100vw; */
 }
