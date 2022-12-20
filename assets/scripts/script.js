@@ -38,7 +38,7 @@ function Book (title, author, read, bookID) {
 }
 
 addBtn.addEventListener('click', (e) => {
-  if (popup.style.visibility === 'visible') {
+  if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
     body.click();
   } else {
     popup.style.cssText = 'transform: translate(-50%, -50%) scale(1); visibility: visible; transition: 0.2s ease-in;';
@@ -206,7 +206,6 @@ searchForm.addEventListener('submit', (e) => {
 
     if (findStatus === false) {
         console.log("la");
-
         notFound.textContent = "Not found";
         searchForm.appendChild(notFound);
         validateFormClose = false;
