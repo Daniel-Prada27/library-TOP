@@ -74,6 +74,11 @@ searchBtn.addEventListener('click', (e) => {
       body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
       e.stopPropagation();
     }
+    try {
+        searchForm.removeChild(notFound);
+    } catch (error) {
+        console.log("oops");
+    }
     searchForm.reset();
   })
 
