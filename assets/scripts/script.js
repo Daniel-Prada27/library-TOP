@@ -169,11 +169,11 @@ form.addEventListener('submit', function (event) {
   newCard.id = `book-${bookCounter}`;
 
   if (verifyRead === true) {
-    newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Read</p></div>`;
+    newCard.innerHTML = `<p translate="no">${newBook.title}</p><p translate="no">${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Read</p></div>`;
     const actualCheck = newCard.querySelector(`#${readUiNewID}`);
     actualCheck.style.backgroundColor = 'rgb(159, 255, 156)';
   } else if (verifyRead === false) {
-    newCard.innerHTML = `<p>${newBook.title}</p><p>${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Not Read</p></div>`;
+    newCard.innerHTML = `<p translate="no">${newBook.title}</p><p translate="no">${newBook.author}</p> <div class= "readUI newUI" id=${readUiNewID}> <p id="readOrNot">Not Read</p></div>`;
     const actualCheck = newCard.querySelector(`#${readUiNewID}`);
     actualCheck.style.backgroundColor = 'rgb(229, 140, 140)';
   }
