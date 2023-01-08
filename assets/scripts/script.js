@@ -30,12 +30,23 @@ const bookCollection = [];
 
 let bookCounter = book.length - 1;
 
-function Book (title, author, read, bookID) {
-  this.title = title;
-  this.author = author;
-  this.read = read;
-  this.bookID = bookID;
+// function Book (title, author, read, bookID) {
+//   this.title = title;
+//   this.author = author;
+//   this.read = read;
+//   this.bookID = bookID;
+// }
+
+class Book {
+    constructor(title, author, read, bookID) {
+        this.title = title;
+        this.author = author;
+        this.read = read;
+        this.bookID = bookID;
+    }
+    
 }
+
 
 addBtn.addEventListener('click', (e) => {
   if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
