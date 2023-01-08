@@ -44,7 +44,6 @@ class Book {
         this.read = read;
         this.bookID = bookID;
     }
-    
 }
 
 
@@ -88,7 +87,7 @@ searchBtn.addEventListener('click', (e) => {
   try {
     searchForm.removeChild(notFound);
   } catch (error) {
-    console.log('oops');
+    console.log('oops, there\'s no "Not Found" message to delete');
   }
   searchForm.reset();
 })
@@ -205,10 +204,10 @@ searchForm.addEventListener('submit', (e) => {
   const titleSearch = searchTitle.value;
   let checkedBook;
   let findStatus = false;
-  for (let i = 0; i <= (bookCollection.length - 1); i++) {
+  for (let i in bookCollection) {
     checkedBook = bookCollection[i].title;
     if (checkedBook === titleSearch) {
-      console.log(bookCollection[i]);
+      console.log(bookCollection[i] + `Book title: ${bookCollection[i].title}`);
       findStatus = true;
       validateFormClose = true;
       const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
@@ -217,8 +216,9 @@ searchForm.addEventListener('submit', (e) => {
   }
 
   if (findStatus === false) {
-    console.log('la');
-    notFound.textContent = 'Not found';
+    console.log('Book not found');
+    notFound.textContent = 'Not Found';
+    notFound.style.color = "red";
     searchForm.appendChild(notFound);
     validateFormClose = false;
   }
