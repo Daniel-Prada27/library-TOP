@@ -87,6 +87,13 @@ a {
     cursor: pointer;
 }
 
+a > p {
+    text-decoration: none;
+    background-color: none;
+    color: black;
+    cursor: pointer;
+} 
+
 .fa-github, .fa-brands {
     color: black;
     cursor: pointer;
