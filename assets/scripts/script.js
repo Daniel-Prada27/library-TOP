@@ -62,6 +62,8 @@ deleteBtn.addEventListener('click', () => {
       if (bookArray[i].style.border === '2px solid black') {
         bookArray[i].style.border = 'none';
         lib.removeChild(bookArray[i]);
+        bookArray[i] = null;
+        bookCollection[i] = null;
       }
     }
   }
@@ -219,7 +221,13 @@ searchForm.addEventListener('submit', (e) => {
   let checkedBook;
   let checkedAuthorBook;
   let findStatus = false;
+
   for (let i in bookCollection) {
+
+    if (bookArray[i] === null) {
+        continue;
+    }
+
     checkedBook = bookCollection[i].title;
     checkedAuthorBook = bookCollection[i].author;
     if (checkedBook.includes(titleSearch)) {
