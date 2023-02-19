@@ -30,22 +30,12 @@ const bookCollection = [];
 
 let bookCounter = book.length - 1;
 
-// function Book (title, author, read, bookID) {
-//   this.title = title;
-//   this.author = author;
-//   this.read = read;
-//   this.bookID = bookID;
-// }
-
-class Book {
-    constructor(title, author, read, bookID) {
-        this.title = title;
-        this.author = author;
-        this.read = read;
-        this.bookID = bookID;
-    }
+function Book (title, author, read, bookID) {
+  this.title = title;
+  this.author = author;
+  this.read = read;
+  this.bookID = bookID;
 }
-
 
 addBtn.addEventListener('click', (e) => {
   if (popup.style.visibility === 'visible' || searchPopup.style.visibility === 'visible') {
@@ -87,7 +77,7 @@ searchBtn.addEventListener('click', (e) => {
   try {
     searchForm.removeChild(notFound);
   } catch (error) {
-    console.log('oops, there\'s no "Not Found" message to delete');
+    console.log('oops');
   }
   searchForm.reset();
 })
@@ -195,6 +185,7 @@ form.addEventListener('submit', function (event) {
   setBookId(newCard);
   setReadId();
   bookCollection.push(newBook)
+  addToStorage(newCard.outerHTML, newCard);
   return newBook;
 })
 
@@ -204,10 +195,10 @@ searchForm.addEventListener('submit', (e) => {
   const titleSearch = searchTitle.value;
   let checkedBook;
   let findStatus = false;
-  for (let i in bookCollection) {
+  for (let i = 0; i <= (bookCollection.length - 1); i++) {
     checkedBook = bookCollection[i].title;
-    if (checkedBook === titleSearch) {
-      console.log(bookCollection[i] + `Book title: ${bookCollection[i].title}`);
+    if (checkedBook.includes(titleSearch)) {
+      console.log(bookCollection[i]);
       findStatus = true;
       validateFormClose = true;
       const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
@@ -216,11 +207,18 @@ searchForm.addEventListener('submit', (e) => {
   }
 
   if (findStatus === false) {
-    console.log('Book not found');
-    notFound.textContent = 'Not Found';
-    notFound.style.color = "red";
+    console.log('la');
+    notFound.textContent = 'Not found';
     searchForm.appendChild(notFound);
     validateFormClose = false;
   }
   searchBtnForm.click();
 })
+
+
+
+
+function addToStorage(completeBookCard, bookCard) {
+    localStorage.setItem(`${bookCard.id}`, completeBookCard);
+    console.log(`Book ${bookCard.id} was added to local storage`);
+}
