@@ -157,6 +157,14 @@ body.addEventListener('click', () => {
 form.addEventListener('submit', function (event) {
   // Prevent the form from being submitted
   event.preventDefault();
+
+  for (let i in bookArray) {
+    if (bookArray[i].children[i].innerHTML === bookTitle.value ) {
+        console.log("Book already exists");
+        return
+    }
+  }
+
   const newBookName = bookTitle.value;
   const newBookAuthor = authorName.value;
   const verifyRead = readCheck.checked;
@@ -203,6 +211,9 @@ searchForm.addEventListener('submit', (e) => {
       validateFormClose = true;
       const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
       bookFound.style.border = '2px solid black';
+    } else {
+        const notMatch = document.getElementById(`${bookCollection[i].bookID}`)
+        notMatch.style.border = 'none';
     }
   }
 
