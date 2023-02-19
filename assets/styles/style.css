@@ -83,7 +83,7 @@ img {
 a {
     text-decoration: none;
     background-color: none;
-    color: none;
+    color: black;
     cursor: pointer;
 }
 
@@ -159,6 +159,7 @@ a > p {
     gap: 2rem;
     position: sticky;
     top: 8rem;
+    user-select: none;
 }
 
 .btn {
@@ -273,6 +274,7 @@ input:focus {
 .read-group {
     display: flex;
     gap: 4px;
+    user-select: none;
 }
 
 .submitBtn {
