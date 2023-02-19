@@ -20,6 +20,7 @@ const inputField = document.querySelectorAll('.input');
 const searchPopup = document.getElementById('search-popup');
 const searchForm = document.querySelector('.search-form');
 const searchTitle = document.getElementById('searchTitle');
+const searchAuthor = document.getElementById('searchAuthor');
 const searchBtnForm = document.getElementById('searchBtn-Form');
 let validateFormClose = false;
 
@@ -200,17 +201,39 @@ form.addEventListener('submit', function (event) {
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const titleSearch = searchTitle.value;
+  let titleSearch = searchTitle.value;
+  let authorSearch = searchAuthor.value;
+  
+ if (titleSearch === '' && authorSearch === '') {
+    body.click();
+    return;
+ } else {
+    if (titleSearch === '') {
+        titleSearch = null;
+    }
+    if (authorSearch === '') {
+        authorSearch = null;
+    }
+ }
+
   let checkedBook;
+  let checkedAuthorBook;
   let findStatus = false;
-  for (let i = 0; i <= (bookCollection.length - 1); i++) {
+  for (let i in bookCollection) {
     checkedBook = bookCollection[i].title;
+    checkedAuthorBook = bookCollection[i].author;
     if (checkedBook.includes(titleSearch)) {
+        console.log("yup");
       console.log(bookCollection[i]);
       findStatus = true;
       validateFormClose = true;
       const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
       bookFound.style.border = '2px solid black';
+    } else if (checkedAuthorBook.includes(authorSearch)) {
+        findStatus = true;
+        validateFormClose = true;
+        const bookFound = document.getElementById(`${bookCollection[i].bookID}`);
+        bookFound.style.border = '2px solid black';
     } else {
         const notMatch = document.getElementById(`${bookCollection[i].bookID}`)
         notMatch.style.border = 'none';
@@ -227,6 +250,9 @@ searchForm.addEventListener('submit', (e) => {
 })
 
 
+// function filterRead() {
+    // ADD A TOGGLE TO FILTER READ OR UNREAD BOOKS
+// }
 
 
 function addToStorage(completeBookCard, bookCard) {
